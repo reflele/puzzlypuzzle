@@ -6,10 +6,14 @@ public class PushableStonesScript : MonoBehaviour
 {
     // Start is called before the first frame update
     Transform stonesPosition;
+    Transform pushableStonesPosition;
     Vector3 defaultPosition;
     [SerializeField] List<GameObject> individualStones;
+    // [SerializeField] List<GameObject> individualUnmovableStones;
+    
 
     private List<Vector3> individualStonesPositions = new List<Vector3>();
+    // private List<Vector3> individualUnmovableStonesPositions = new List<Vector3>();
 
     void Start()
     {
@@ -22,6 +26,19 @@ public class PushableStonesScript : MonoBehaviour
             // Debug.Log("Got run" + i.ToString());
             individualStonesPositions.Add(individualStones[i].GetComponent<Transform>().localPosition);
         }
+        
+        
+        //         // Debug.Log("pushablestonesscript start");
+        //         pushableStonesPosition = GetComponent<Transform>();
+        //
+        // defaultPosition = stonesPosition.GetComponent<Transform>().localPosition;
+        //
+        // for(int i = 0; i < individualUnmovableStones.Count; i++){
+        //     // Debug.Log("Got run" + i.ToString());
+        //     individualUnmovableStonesPositions.Add(individualUnmovableStones[i].GetComponent<Transform>().localPosition);
+        // }
+        
+        
     }
 
     public void ResetStones(){

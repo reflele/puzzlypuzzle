@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     if (playerLevel < 1 || playerLevel >5 )
     {
     playerLevel = 1;
-    playerPosition.transform.position = spawnLocationOne;
+    // playerPosition.transform.position = spawnLocationOne;
 }else
     {
         switch (playerLevel) 

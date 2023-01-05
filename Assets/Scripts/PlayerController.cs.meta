@@ -3,7 +3,10 @@ guid: 9fc2244386beab84f97c0d04f9d02342
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - groundCheck: {instanceID: 0}
+  - levelCheck: {instanceID: 0}
+  - stones: {fileID: 3545909517164660430, guid: a6478a5d92dccf146ba8d3d4d75f9fb9, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
