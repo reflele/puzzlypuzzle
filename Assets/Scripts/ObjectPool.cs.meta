@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - stone: {fileID: 3545909517164660430, guid: a6478a5d92dccf146ba8d3d4d75f9fb9, type: 3}
   - unmovableStone: {fileID: 6750320248995373837, guid: 63d7954f2d7cf444bad028b66cdca389, type: 3}
-  executionOrder: 0
+  executionOrder: -50
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

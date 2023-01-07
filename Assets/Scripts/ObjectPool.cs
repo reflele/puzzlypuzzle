@@ -10,8 +10,8 @@ public class ObjectPool : MonoBehaviour
     private List<GameObject> pooledUnmovableStones = new List<GameObject>();
     
     
-    private int stonesPoolCount = 120;
-    private int unmovableStonesPoolCount = 30;
+    private int stonesPoolCount = 100;
+    private int unmovableStonesPoolCount = 100;
 
     [SerializeField] private GameObject stone;
     [SerializeField] private GameObject unmovableStone;
@@ -26,7 +26,6 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
-        
         for (int i = 0; i < stonesPoolCount; i++)
         {
             GameObject stoneObj = Instantiate(stone);
