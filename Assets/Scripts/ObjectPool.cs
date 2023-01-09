@@ -10,8 +10,8 @@ public class ObjectPool : MonoBehaviour
     private List<GameObject> pooledUnmovableStones = new List<GameObject>();
     
     
-    private int stonesPoolCount = 100;
-    private int unmovableStonesPoolCount = 100;
+    private int stonesPoolCount = 2000;
+    private int unmovableStonesPoolCount = 2000;
 
     [SerializeField] private GameObject stone;
     [SerializeField] private GameObject unmovableStone;

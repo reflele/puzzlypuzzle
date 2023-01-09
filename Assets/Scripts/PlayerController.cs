@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     Transform playerPosition;
     Rigidbody rb;
     float jumpTimer;
-    [SerializeField] int playerLevel;
+    [SerializeField] int playerLvl;
     [SerializeField] float movementSpeed = 7f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] Transform groundCheck;
@@ -16,15 +15,18 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Transform levelCheck;
     [SerializeField] LayerMask level;
-    Vector3 spawnLocationOne = new Vector3(-100,-4,-3);
-    Vector3 spawnLocationTwo = new Vector3(-75,-4,-3);
-    Vector3 spawnLocationThree = new Vector3(-100,-4,-3);
-    Vector3 spawnLocationFour = new Vector3(-100,-4,-3);
-    Vector3 spawnLocationFive = new Vector3(-100,-4,-3);
+    // Vector3 spawnLocationOne = new Vector3(-100, -4, -3);
+    // Vector3 spawnLocationTwo = new Vector3(-75, -4, -3);
+    // Vector3 spawnLocationThree = new Vector3(-100, -4, -3);
+    // Vector3 spawnLocationFour = new Vector3(-100, -4, -3);
+    // Vector3 spawnLocationFive = new Vector3(-100, -4, -3);
+    // Vector3 spawnLocationSix = new Vector3(-100, -4, -3);
+    // Vector3 spawnLocationSeven = new Vector3(-100, -4, -3);
+    // Vector3 spawnLocationEight = new Vector3(-100, -4, -3);
 
     PushableStonesScript pushableStonesScript;
     [SerializeField] GameObject stones;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +34,12 @@ public class PlayerController : MonoBehaviour
         // rb = GetComponent<Rigidbody>;
         rb = GetComponent<Rigidbody>();
         playerPosition = GetComponent<Transform>();
-        ResetPlayerPosition();
+        // ResetPlayerPosition();
         BoxCollider lvl2 = GetComponent<BoxCollider>();
         pushableStonesScript = stones.GetComponent<PushableStonesScript>();
         
+        playerLvl = -1;
+
     }
 
 
@@ -43,71 +47,125 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown("r")){
+        if (Input.GetKeyDown("r"))
+        {
             // playerPosition.transform.position = levelOne;
-    
-            pushableStonesScript.ResetStones();
             ResetPlayerPosition();
-        }
 
-        playerLevel = IsNextLevel();
+            pushableStonesScript.ResetStones();
+        }
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        if(Input.GetButtonDown("Jump") && IsGrounded()){
-        rb.velocity = new Vector3(rb.velocity.x,jumpForce,rb.velocity.z);
-        jumpTimer = 300;
+        if (Input.GetButtonDown("Jump") && IsGrounded())
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            jumpTimer = 300;
         }
 
-        if (jumpTimer != 0){
+        if (jumpTimer != 0)
+        {
             jumpTimer--;
         }
-        
-        rb.velocity = new Vector3(verticalInput*movementSpeed,rb.velocity.y,horizontalInput*-movementSpeed);
-    
+
+        rb.velocity = new Vector3(verticalInput * movementSpeed, rb.velocity.y, horizontalInput * -movementSpeed);
+
+
+
     }
+
     bool IsGrounded()
     {
-       return Physics.CheckSphere(groundCheck.position, .1f, ground);
+        return Physics.CheckSphere(groundCheck.position, .1f, ground);
     }
-    int IsNextLevel(){
-    if (Physics.CheckSphere(levelCheck.position, .1f, level)){
-        return 2;
-    } else return playerLevel;
+    
+    private void OnTriggerEnter(Collider other)
+    {
+
+        print(other.gameObject.tag);
+        
+        if (other.gameObject.tag == "Level1")
+        {
+            playerLvl = 1;
+            
+        }
+// asd
+        else if (other.gameObject.tag == "Level2")
+        {
+            playerLvl = 2;
+        }
+
+        else if (other.gameObject.tag == "Level3")
+        {
+            playerLvl = 3;
+        }
+
+        else if (other.gameObject.tag == "Level4")
+        {
+            playerLvl = 4;
+        }
+
+        else if (other.gameObject.tag == "Level5")
+        {
+            playerLvl = 5;
+        }
+
+        else if (other.gameObject.tag == "Level6")
+        {
+            playerLvl = 6;
+        }
+
+        else if (other.gameObject.tag == "Level7")
+        {
+            playerLvl = 7;
+        }
+
+        else if (other.gameObject.tag == "Level8")
+        {
+            playerLvl = 8;
+        }
+
     }
 
-    void ResetPlayerPosition(){
-    if (playerLevel < 1 || playerLevel >5 )
+    void ResetPlayerPosition()
+    
     {
-    playerLevel = 1;
-    // playerPosition.transform.position = spawnLocationOne;
-}else
-    {
-        switch (playerLevel) 
-{
-  case 1:
-    playerPosition.transform.position = spawnLocationOne;
-    break;
-  case 2:
-    playerPosition.transform.position = spawnLocationTwo;
-    break;
-  case 3:
-    playerPosition.transform.position = spawnLocationThree;
-    break;
-  case 4:
-    playerPosition.transform.position = spawnLocationFour;
-    break;
-  case 5:
-    playerPosition.transform.position = spawnLocationFive;
-    break;
-}
-}
+                        if (playerLvl < 1 || playerLvl > 8)
+                        {
+                            playerLvl = 1;
+                        }
+                        else
+                        {
+                            switch (playerLvl)
+                            {
+                                case 1:
+                                    playerPosition.transform.position = new Vector3(-45, -4.4f, -3);
+                                    break;
+                                case 2:
+                                playerPosition.transform.position = new Vector3(-28.7f, -4.4f, -3);
+                                break;
+                                case 3:
+                                    playerPosition.transform.position = new Vector3(-8.4f, -4.4f, -3);
+                                break;
+                                case 4:
+                                playerPosition.transform.position = new Vector3(15.64f, -4.4f, -3);
+                                break;
+                                // case 5:
+                                //     playerPosition.transform.position = spawnLocationFive;
+                                //     break;
+                                // case 6:
+                                //     playerPosition.transform.position = spawnLocationFive;
+                                //     break;
+                                // case 7:
+                                //     playerPosition.transform.position = spawnLocationFive;
+                                //     break;
+                                // case 8:
+                                //     playerPosition.transform.position = spawnLocationFive;
+                                //     break;
+                            }
+                        }
+                    }
+    
+                }
 
-
-
-
-
-
-}
-}
